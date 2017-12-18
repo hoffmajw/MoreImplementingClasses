@@ -416,8 +416,6 @@ class Line(object):
           :rtype: float
         """
 
-        slope = 0
-
         dy = self.start.y - self.end.y
         dx = self.start.x - self.end.x
 
@@ -664,21 +662,10 @@ class Line(object):
           :rtype: bool
         """
 
-        dy_self = self.start.y - self.end.y
-        dx_self = self.start.x - self.end.x
-        if dx_self == 0:
-            self_slope = math.inf
-        else:
-            self_slope = dy_self/dx_self
+        self_slope = self.slope()
+        new_slope = line2.slope()
 
-        dy_line = line2.start.y - line2.end.y
-        dx_line = line2.start.x - line2.end.x
-        if dx_line == 0:
-            line_slope = math.inf
-        else:
-            line_slope = dy_line/dx_line
-
-        if round(self_slope, 12) == round(line_slope, 12):
+        if round(self_slope, 12) == round(new_slope, 12):
             return True
         else:
             return False
