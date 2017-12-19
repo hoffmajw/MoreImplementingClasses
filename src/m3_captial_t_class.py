@@ -146,13 +146,7 @@ class CapitalT(object):
                                               letter_thickness/2))),
                                    (rg.Point((intersection_center.x +
                                               letter_thickness/2),
-                    (intersection_center.y + (height - letter_thickness)))))
-        self.intersection_center = intersection_center
-        self.width = width
-        self.height = height
-        self.letter_thickness = letter_thickness
-        self.permOut = ''
-        self.perFill = ''
+                    (intersection_center.y + (height - letter_thickness/2)))))
 
         # --------------------------------------------------------------
         # Done 3
@@ -215,8 +209,6 @@ class CapitalT(object):
         self.v_rect.fill_color = fill_color
         self.h_rect.outline_color = outline_color
         self.v_rect.outline_color = outline_color
-        self.permOut = outline_color
-        self.permFill = fill_color
 
         # --------------------------------------------------------------
         # Done 5
@@ -286,11 +278,9 @@ class CapitalT(object):
         Type hints:
           :rtype: CapitalT
         """
-        new_t = CapitalT(self.intersection_center, self.width, self.height,
-                         self.letter_thickness)
-        new_t.set_colors(self.permFill, self.permOut)
-        # print(self.fill_color)
-        # print(self.outline_color)
+        new_t = CapitalT(self.h_rect.get_center(), self.h_rect.get_width(),
+                         self.v_rect.get_height(), self.v_rect.get_width())
+        new_t.set_colors(self.h_rect.fill_color, self.h_rect.outline_color)
         return new_t
 
         # --------------------------------------------------------------
