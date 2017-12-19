@@ -2,8 +2,8 @@
 A   CapitalT   class and methods that use the Cross class.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jaxon Hoffman.
+"""  # Done 1.
 
 import rosegraphics as rg
 
@@ -14,10 +14,10 @@ def main():
     #   Uncomment only 1 test at a time as you develop your code.
     # --------------------------------------------------------------
 
-    # run_test_simple_t()
-    # run_test_set_colors()
-    # run_test_move_by()
-    # run_test_clone()
+    run_test_simple_t()
+    run_test_set_colors()
+    run_test_move_by()
+    run_test_clone()
 
 
 def run_test_simple_t():
@@ -134,8 +134,28 @@ class CapitalT(object):
           :type height:   int
           :type letter_thickness:   int
         """
+
+        self.h_rect = rg.Rectangle(rg.Point(intersection_center.x - width/2,
+                                            intersection_center.y -
+                                            letter_thickness/2), rg.Point(
+            intersection_center.x + width/2, intersection_center.y +
+                                             letter_thickness/2))
+        self.v_rect = rg.Rectangle((rg.Point((intersection_center.x -
+                                              letter_thickness/2),
+                                             (intersection_center.y -
+                                              letter_thickness/2))),
+                                   (rg.Point((intersection_center.x +
+                                              letter_thickness/2),
+                    (intersection_center.y + (height - letter_thickness)))))
+        self.intersection_center = intersection_center
+        self.width = width
+        self.height = height
+        self.letter_thickness = letter_thickness
+        self.permOut = ''
+        self.perFill = ''
+
         # --------------------------------------------------------------
-        # TODO: 3.
+        # Done 3
         #   READ the above specification, including the Example.
         #   Implement this method
         #   Note: you will need to also implement attach_to before testing
@@ -159,8 +179,12 @@ class CapitalT(object):
         Type hints:
           :type window: rg.RoseWindow
         """
+
+        self.v_rect.attach_to(window)
+        self.h_rect.attach_to(window)
+
         # --------------------------------------------------------------
-        # TODO: 4.
+        # Done 4
         #   READ the above specification, including the Example.
         #   Implement and test this method by looking at the console and
         #     the graphics window (compare it to simple_t.pdf)
@@ -186,8 +210,16 @@ class CapitalT(object):
           :type fill_color: str
           :type outline_color: str
         """
+
+        self.h_rect.fill_color = fill_color
+        self.v_rect.fill_color = fill_color
+        self.h_rect.outline_color = outline_color
+        self.v_rect.outline_color = outline_color
+        self.permOut = outline_color
+        self.permFill = fill_color
+
         # --------------------------------------------------------------
-        # TODO: 5.
+        # Done 5
         #   READ the above specification, including the Example.
         #   Implement and test this method by uncommenting the appropriate
         #     run_test method in main. Compare the graphics window to
@@ -216,8 +248,18 @@ class CapitalT(object):
           :type dx: int
           :type dy: int
         """
+
+        self.h_rect.corner_1.x += dx
+        self.h_rect.corner_1.y += dy
+        self.h_rect.corner_2.x += dx
+        self.h_rect.corner_2.y += dy
+        self.v_rect.corner_1.x += dx
+        self.v_rect.corner_1.y += dy
+        self.v_rect.corner_2.x += dx
+        self.v_rect.corner_2.y += dy
+
         # --------------------------------------------------------------
-        # TODO: 6.
+        # Done 6
         #   READ the above specification, including the Example.
         #   Implement and test this method by uncommenting the appropriate
         #     run_test method in main. Compare the graphics window to
@@ -244,8 +286,15 @@ class CapitalT(object):
         Type hints:
           :rtype: CapitalT
         """
+        new_t = CapitalT(self.intersection_center, self.width, self.height,
+                         self.letter_thickness)
+        new_t.set_colors(self.permFill, self.permOut)
+        # print(self.fill_color)
+        # print(self.outline_color)
+        return new_t
+
         # --------------------------------------------------------------
-        # TODO: 7.
+        # Done 7
         #   READ the above specification, including the Example.
         #   Implement and test this method by uncommenting the appropriate
         #     run_test method in main. Compare the graphics window to
